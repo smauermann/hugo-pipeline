@@ -8,10 +8,14 @@ phases:
   install:
     runtime-versions:
       golang: latest
-
-  build:
     commands:
       - wget "https://github.com/gohugoio/hugo/releases/download/v${hugo_version}/hugo_${hugo_version}_Linux-64bit.deb"
       - dpkg -i "hugo_${hugo_version}_Linux-64bit.deb"
     finally:
       - hugo version
+  build:
+    commands:
+      - hugo
+  post_build:
+    commands:
+      - echo "Build finished"
